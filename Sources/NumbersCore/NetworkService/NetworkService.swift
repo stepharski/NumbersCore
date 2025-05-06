@@ -8,17 +8,17 @@
 import Foundation
 
 // MARK: - NetworkServiceProtocol
-protocol NetworkServiceProtocol {
+public protocol NetworkServiceProtocol {
     func request<T: Codable>(_ route: ApiPath) async throws -> T
 }
 
 // MARK: - NetworkService
-class NetworkService: NetworkServiceProtocol {
+public class NetworkService: NetworkServiceProtocol {
     // MARK: Properties
     private let decoder = JSONDecoder()
 
     // MARK: Generic request
-    func request<T>(_ route: ApiPath) async throws -> T where T: Codable {
+    public func request<T>(_ route: ApiPath) async throws -> T where T: Codable {
         var urlComp = URLComponents(string: route.baseURL + route.path)
         urlComp?.queryItems = route.parameters.map {
             URLQueryItem(name: $0.key, value: $0.value)

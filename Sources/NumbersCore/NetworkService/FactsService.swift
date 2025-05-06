@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - FactsServiceProtocol
-protocol FactsServiceProtocol {
+public protocol FactsServiceProtocol {
     func fetchSingleFact(number: Int) async throws -> FactListViewModel
     func fetchRandomFact() async throws -> FactListViewModel
     func fetchRangeFacts(min: Int, max: Int) async throws -> FactListViewModel
@@ -16,12 +16,12 @@ protocol FactsServiceProtocol {
 }
 
 // MARK: - FactsService
-final class FactsService: NetworkService, FactsServiceProtocol {
+public final class FactsService: NetworkService, FactsServiceProtocol {
     // MARK: Properties
     private let storage = FactsStorage()
 
     // MARK: Fetch Functionality
-    func fetchSingleFact(number: Int) async throws -> FactListViewModel {
+    public func fetchSingleFact(number: Int) async throws -> FactListViewModel {
         if let cached = storage.load(for: "\(number)") {
             return FactListViewModel(numbers: ["\(number)"], facts: [cached.text])
         }
@@ -31,13 +31,13 @@ final class FactsService: NetworkService, FactsServiceProtocol {
         return FactListViewModel(numbers: ["\(fact.number)"], facts: [fact.text])
     }
 
-    func fetchRandomFact() async throws -> FactListViewModel {
+    public func fetchRandomFact() async throws -> FactListViewModel {
         let route = ApiPath.randomFact
         let fact: FactResponse = try await request(route)
         return FactListViewModel(numbers: ["\(fact.number)"], facts: [fact.text])
     }
 
-    func fetchRangeFacts(min: Int, max: Int) async throws -> FactListViewModel {
+    public func fetchRangeFacts(min: Int, max: Int) async throws -> FactListViewModel {
         let keys = (min...max).map { "\($0)" }
         let missingKeys = storage.missingKeys(from: keys)
         if !missingKeys.isEmpty {
@@ -51,7 +51,7 @@ final class FactsService: NetworkService, FactsServiceProtocol {
         return FactListViewModel(numbers: numbers, facts: facts)
     }
 
-    func fetchMultipleFacts(numbers: [Int]) async throws -> FactListViewModel {
+    public func fetchMultipleFacts(numbers: [Int]) async throws -> FactListViewModel {
         let keys = numbers.map { "\($0)" }
         let missingKeys = storage.missingKeys(from: keys)
         if !missingKeys.isEmpty {

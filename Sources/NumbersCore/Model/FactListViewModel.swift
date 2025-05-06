@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FactListViewModel {
+public struct FactListViewModel {
     let numbers: [String]
     let facts: [String]
 }
