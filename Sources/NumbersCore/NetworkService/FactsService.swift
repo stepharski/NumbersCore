@@ -20,6 +20,9 @@ public final class FactsService: NetworkService, FactsServiceProtocol {
     // MARK: Properties
     private let storage = FactsStorage()
 
+    // MARK: Init
+    public override init() { }
+
     // MARK: Fetch Functionality
     public func fetchSingleFact(number: Int) async throws -> FactListViewModel {
         if let cached = storage.load(for: "\(number)") {

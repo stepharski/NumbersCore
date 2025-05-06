@@ -22,6 +22,9 @@ public final class TextProcessorImpl: TextProcessor {
     public var maxDigitsCount: Int = 6
     public var maxRangeCount: Int = 100
 
+    // MARK: Init
+    public init() { }
+
     // MARK: Masks
     public func applySingleNumberMask(to text: String) -> String {
         let number = text.filter { $0.isNumber }
