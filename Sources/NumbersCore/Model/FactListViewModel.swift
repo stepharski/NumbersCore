@@ -8,6 +8,6 @@
 import Foundation
 
 public struct FactListViewModel {
-    let numbers: [String]
-    let facts: [String]
+    public let numbers: [String]
+    public let facts: [String]
 }
