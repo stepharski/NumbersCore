@@ -34,7 +34,7 @@ final class FactsStorage {
     }
 
     func missingKeys(from keys: [String]) -> [String] {
-        return keys.filter { cache[$0] != nil }
+        return keys.filter { cache[$0] == nil }
     }
     
     func loadSortedFacts(for keys: [String]) -> [(key: String, value: FactResponse)] {
