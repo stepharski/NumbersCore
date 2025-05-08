@@ -15,4 +15,16 @@ struct BatchFactsResponse: Codable {
         let container = try decoder.singleValueContainer()
         self.facts = try container.decode([String : String].self)
     }
+
+    var sortedFacts: [(key: String, value: String)] {
+        facts.sorted { (Int($0.key) ?? 0) < (Int($1.key) ?? 0) }
+    }
+
+    var sortedKeys: [String] {
+        sortedFacts.map { $0.key }
+    }
+
+    var sortedValues: [String] {
+        sortedFacts.map { $0.value }
+    }
 }
