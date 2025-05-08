@@ -5,9 +5,8 @@
 //  Created by Stepan Kukharskyi on 5/8/25.
 //
 
-import Foundation
-
 import XCTest
+import Foundation
 @testable import NumbersCore
 
 final class TextProcessorTests: XCTestCase {

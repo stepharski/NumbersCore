@@ -11,6 +11,10 @@ import Foundation
 struct BatchFactsResponse: Codable {
     let facts: [String: String]
 
+    init(facts: [String: String]) {
+        self.facts = facts
+    }
+
     init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.facts = try container.decode([String : String].self)
