@@ -68,3 +68,6 @@ public final class FactsService: NetworkService, FactsServiceProtocol {
         return FactListViewModel(numbers: numbers, facts: facts)
     }
 }
+
+// MARK: - Sendable
+extension FactsService: @unchecked Sendable { }

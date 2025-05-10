@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FactListViewModel {
+public struct FactListViewModel: Sendable {
     public let numbers: [String]
     public let facts: [String]
 }
