@@ -8,12 +8,12 @@
 import Foundation
 
 // MARK: - NetworkServiceProtocol
-public protocol NetworkServiceProtocol {
+protocol NetworkServiceProtocol {
     func request<T: Codable>(_ route: ApiPath) async throws -> T
 }
 
 // MARK: - NetworkService
-public class NetworkService: NetworkServiceProtocol {
+class NetworkService: NetworkServiceProtocol {
     // MARK: Properties
     private let decoder = JSONDecoder()
 

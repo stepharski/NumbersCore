@@ -16,12 +16,10 @@ public protocol FactsServiceProtocol {
 }
 
 // MARK: - FactsService
-public final class FactsService: NetworkService, FactsServiceProtocol {
+public final class FactsService: FactsServiceProtocol {
     // MARK: Properties
     private let storage = FactsStorage()
-
-    // MARK: Init
-    public override init() { }
+    private let networkService = NetworkService()
 
     // MARK: Fetch Functionality
     public func fetchSingleFact(number: Int) async throws -> FactListViewModel {
@@ -29,14 +27,14 @@ public final class FactsService: NetworkService, FactsServiceProtocol {
             return FactListViewModel(numbers: ["\(number)"], facts: [cached.text])
         }
         let route = ApiPath.singleFact(number: number)
-        let fact: FactResponse = try await request(route)
+        let fact: FactResponse = try await networkService.request(route)
         storage.save(fact)
         return FactListViewModel(numbers: ["\(fact.number)"], facts: [fact.text])
     }
 
     public func fetchRandomFact() async throws -> FactListViewModel {
         let route = ApiPath.randomFact
-        let fact: FactResponse = try await request(route)
+        let fact: FactResponse = try await networkService.request(route)
         return FactListViewModel(numbers: ["\(fact.number)"], facts: [fact.text])
     }
 
@@ -45,7 +43,7 @@ public final class FactsService: NetworkService, FactsServiceProtocol {
         let missingKeys = storage.missingKeys(from: keys)
         if !missingKeys.isEmpty {
             let route = ApiPath.rangeFacts(min: min, max: max)
-            let batch: BatchFactsResponse = try await request(route)
+            let batch: BatchFactsResponse = try await networkService.request(route)
             storage.saveBatch(batch)
         }
         let cached = storage.loadSortedFacts(for: keys)
@@ -59,7 +57,7 @@ public final class FactsService: NetworkService, FactsServiceProtocol {
         let missingKeys = storage.missingKeys(from: keys)
         if !missingKeys.isEmpty {
             let route = ApiPath.multipleFacts(numbers: numbers)
-            let batch: BatchFactsResponse = try await request(route)
+            let batch: BatchFactsResponse = try await networkService.request(route)
             storage.saveBatch(batch)
         }
         let cached = storage.loadSortedFacts(for: keys)

@@ -13,7 +13,7 @@ enum HTTPMethod: String {
 }
 
 // MARK: - ApiPath
-public enum ApiPath {
+enum ApiPath {
     // MARK: Cases
     case singleFact(number: Int)
     case randomFact
