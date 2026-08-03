@@ -23,11 +23,15 @@ class NetworkService: NetworkServiceProtocol {
         urlComp?.queryItems = route.parameters.map {
             URLQueryItem(name: $0.key, value: $0.value)
         }
+
         guard let url = urlComp?.url else {
             throw AppError.invalidURL
         }
+
         var request = URLRequest(url: url)
         request.httpMethod = route.method.rawValue
+        request.timeoutInterval = NetworkConstants.timeout
+        
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let response = response as? HTTPURLResponse,

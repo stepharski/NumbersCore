@@ -1,5 +1,17 @@
-{
-"7": "7 is the maximum number of times a letter-sized paper can be folded in half.",
-"15": "15 is the number of times an average person laughs a day.",
-"99": "99 is a common price ending in psychological pricing."
-}
+[
+    {
+        "number": 7,
+        "type": "trivia",
+        "text": "7 is the number of neutral pH."
+    },
+    {
+        "number": 15,
+        "type": "trivia",
+        "text": "15 is the number of unique combinations possible in certain simplified structural patterns."
+    },
+    {
+        "number": 99,
+        "type": "trivia",
+        "text": "If you count to 99, you've made a step towards exploring the infinity of natural numbers."
+    }
+]

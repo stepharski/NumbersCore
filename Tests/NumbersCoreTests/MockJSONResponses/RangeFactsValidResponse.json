@@ -1,13 +1,57 @@
-{
-"10": "10 is the number of years in a decade.",
-"11": "11 is the number of players in an American football team on the field at one time during play.",
-"12": "12 is the number of constellations in the ecliptic (or signs of the zodiac).",
-"13": "13 is the speed of rush hour traffic on average in kilometres per hour in London.",
-"14": "14 is the number of pieces the body of Osiris was torn into by his fratricidal brother Set.",
-"15": "15 is the number of balls in the eight ball variant of billiards.",
-"16": "16 is the minimum age for getting an adult job in most states and provinces across the globe.",
-"17": "17 is the number of the raka'ahs that Muslims perform during Salah on a daily basis.",
-"18": "18 is the number of levels in hell in the Chinese mythos.",
-"19": "19 is the final year a person is a teenager.",
-"20": "20 is the number of baby teeth in the deciduous dentition."
-}
+[
+    {
+        "number": 10,
+        "type": "trivia",
+        "text": "10 is the number of spacetime dimensions in some superstring theories."
+    },
+    {
+        "number": 11,
+        "type": "trivia",
+        "text": "11 is the number of dimensions in M-theory."
+    },
+    {
+        "number": 12,
+        "type": "trivia",
+        "text": "12 is the number of signs of the zodiac."
+    },
+    {
+        "number": 13,
+        "type": "trivia",
+        "text": "13 is the number of baker's dozen."
+    },
+    {
+        "number": 14,
+        "type": "trivia",
+        "text": "14 is a fascinating number that is often discussed in mathematical puzzles."
+    },
+    {
+        "number": 15,
+        "type": "trivia",
+        "text": "15 is the number of unique combinations possible in certain simplified structural patterns."
+    },
+    {
+        "number": 16,
+        "type": "trivia",
+        "text": "In some cultures, the number 16 is considered a symbol of balance and progression."
+    },
+    {
+        "number": 17,
+        "type": "trivia",
+        "text": "17 is the number of columns in the Parthenon."
+    },
+    {
+        "number": 18,
+        "type": "trivia",
+        "text": "18 is the number of unique combinations possible in certain simplified structural patterns."
+    },
+    {
+        "number": 19,
+        "type": "trivia",
+        "text": "19 is a fascinating number that is often discussed in mathematical puzzles."
+    },
+    {
+        "number": 20,
+        "type": "trivia",
+        "text": "20 is the number of unique combinations possible in certain simplified structural patterns."
+    }
+]

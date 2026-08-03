@@ -1,21 +1,19 @@
 //
-//  FactResponse.swift
+//  MultiFactResponse.swift
 //  NumbersCore
 //
-//  Created by Stepan Kukharskyi on 5/6/25.
+//  Created by Stepan Kukharskyi on 8/3/26.
 //
 
 import Foundation
 
-// MARK: - FactResponse
-struct FactResponse: Codable {
-    let text: String
+struct MultiFactResponse: Codable {
     let number: Int
-    let found: Bool
     let type: String
+    let text: String
 }
 
-extension FactResponse {
+extension MultiFactResponse {
     func toFactItem() -> FactItem {
         return FactItem(number: number, type: type, text: text)
     }

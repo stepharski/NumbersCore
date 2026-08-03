@@ -28,44 +28,44 @@ final class FactsStorageTests: XCTestCase {
     func test_saveLoad_singleFact() {
         let number = 42
         let text = "42 is the answer"
-        let fact = FactResponse(
-            text: text,
-            number: number,
-            found: true,
-            type: "trivia")
+        let fact = FactItem(number: number, type: "trivia", text: text)
         storage?.save(fact)
         let result = storage?.load(for: "\(number)")
         XCTAssertEqual(result?.number, number)
-        XCTAssertEqual(result?.found, true)
         XCTAssertEqual(result?.text, text)
     }
 
     // MARK: Batch Fact Tests
     func test_saveLoad_batchFact() {
-        let numbers = [7,99]
-        let firstFact = "7 is the maximum number of times a letter-sized paper can be folded in half."
-        let lastFact = "99 is a common price ending in psychological pricing."
-        let batch = BatchFactsResponse(facts: [
-            "\(numbers.first ?? 7)": firstFact,
-            "\(numbers.last ?? 99)": lastFact
-        ])
-        storage?.saveBatch(batch)
-        let result = storage?.loadSortedFacts(for: batch.sortedKeys)
-        XCTAssertEqual(result?.count, numbers.count)
-        XCTAssertEqual(result?.first?.key, "\(numbers.first ?? 7)")
-        XCTAssertEqual(result?.last?.key, "\(numbers.last ?? 99)")
-        XCTAssertEqual(result?.first?.value.text, firstFact)
-        XCTAssertEqual(result?.last?.value.text, lastFact)
+        let firstFact = FactItem(
+            number: 7,
+            type: "trivia",
+            text: "7 is the maximum number of times a letter-sized paper can be folded in half.")
+        let lastFact = FactItem(
+            number: 99,
+            type: "trivia",
+            text: "99 is a common price ending in psychological pricing.")
+        let batch = [firstFact, lastFact]
+        let keys = batch.map { "\($0.number)" }
+
+        storage?.saveMulti(batch)
+        let result = storage?.loadMultiFacts(for: keys)
+        XCTAssertEqual(result?.count, batch.count)
+
+        XCTAssertEqual(result?.first?.number, batch.first?.number)
+        XCTAssertEqual(result?.last?.number, batch.last?.number)
+
+        XCTAssertEqual(result?.first?.text, firstFact.text)
+        XCTAssertEqual(result?.last?.text, lastFact.text)
     }
 
     // MARK: Missing Keys Tests
     func test_missingKeys() {
         let keys = ["1", "2", "3"]
-        let fact = FactResponse(
-            text: "Stored",
+        let fact = FactItem(
             number: 1,
-            found: true,
-            type: "trivia")
+            type: "trivia",
+            text: "Strored")
         storage?.save(fact)
         let result = storage?.missingKeys(from: keys)
         XCTAssertEqual(result?.count, keys.count - 1)
@@ -74,11 +74,10 @@ final class FactsStorageTests: XCTestCase {
 
     // MARK: Clear Cahce Tests
     func test_clearCache() {
-        let fact = FactResponse(
-            text: "Clearing purposes",
+        let fact = FactItem(
             number: 100,
-            found: true,
-            type: "trivia")
+            type: "trivia",
+            text: "Clearing purposes")
         storage?.save(fact)
         storage?.clearCache()
         let result = storage?.load(for: "100")

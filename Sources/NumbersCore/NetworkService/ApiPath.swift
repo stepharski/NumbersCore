@@ -35,15 +35,25 @@ enum ApiPath {
             return "\(number)"
         case .randomFact:
             return "random"
-        case .rangeFacts(let min, let max):
-            return "\(min)..\(max)"
-        case .multipleFacts(let numbers):
-            return numbers.map { String($0) }.joined(separator: .comma)
+        case .rangeFacts:
+            return "range"
+        case .multipleFacts:
+            return "multi"
         }
     }
 
     var parameters: [String: String] {
-        return ["json": "true"]
+        var params: [String: String] = ["json": "true"]
+        switch self {
+        case .rangeFacts(let min, let max):
+            params["start"] = "\(min)"
+            params["end"] = "\(max)"
+        case .multipleFacts(let numbers):
+            params["numbers"] = numbers.map { String($0) }.joined(separator: .comma)
+        default:
+            break
+        }
+        return params
     }
 
     var responseModel: Codable.Type {
@@ -51,7 +61,7 @@ enum ApiPath {
         case .singleFact, .randomFact:
             return FactResponse.self
         case .rangeFacts, .multipleFacts:
-            return BatchFactsResponse.self
+            return [MultiFactResponse].self
         }
     }
 }

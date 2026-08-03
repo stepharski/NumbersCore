@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppError: String, Error {
+public enum AppError: String, Error {
     case invalidEntry = "Invalid number entry"
     case noEntry = "Please enter number to display fact"
     case invalidRangeCount = "Range should have min and max numbers"

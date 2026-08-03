@@ -9,5 +9,6 @@ import Foundation
 
 // MARK: - NetworkConstants
 enum NetworkConstants {
-    static let numbersBaseURL = "http://numbersapi.com/"
+    static let timeout: TimeInterval = 10
+    static let numbersBaseURL = "https://api.swift.foxminded.ua/api/facts/"
 }
