@@ -8,7 +8,13 @@
 import Foundation
 
 public struct FactItem {
-    let number: Int
-    let type: String
-    let text: String
+    public let number: Int
+    public let type: String
+    public let text: String
+
+    public init(number: Int, type: String, text: String) {
+        self.number = number
+        self.type = type
+        self.text = text
+    }
 }
