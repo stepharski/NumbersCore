@@ -18,3 +18,5 @@ public struct FactItem {
         self.text = text
     }
 }
+
+extension FactItem: Equatable { }
